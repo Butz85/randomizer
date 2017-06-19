@@ -16,6 +16,8 @@ public class AddNamesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         configureBackButton();
+
+        configureAddNewNamesButton();
     }
 
     private void configureBackButton() {
@@ -24,6 +26,17 @@ public class AddNamesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, 0);
+            }
+        });
+    }
+
+    private void configureAddNewNamesButton() {
+        Button newNameButton = (Button) findViewById(R.id.addNewNameButton);
+        newNameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

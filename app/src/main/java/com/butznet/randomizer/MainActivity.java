@@ -61,12 +61,14 @@ public class MainActivity extends AppCompatActivity {
         configureAddNamesButton();
     }
 
+
     private void configureAddNamesButton() {
         Button addNamesButton = (Button) findViewById(R.id.addNamesButton);
         addNamesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, AddNamesActivity.class));
+                overridePendingTransition(0, 0);
             }
         });
     }
