@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 Random random = new Random();
                 int n = 10 + random.nextInt(20);
                 tvScreen = (TextView)findViewById(R.id.onScreenView);
-//                tvScreen = (TextView)findViewById(R.id.buttonTextView);
                 final Handler handler = new Handler();
-
-//                tvScreen.setText("");
 
                 for (int i = 0; i < n; i++ ) {
                     final int finalI = i;

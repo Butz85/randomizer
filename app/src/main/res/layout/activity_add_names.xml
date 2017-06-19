@@ -33,7 +33,7 @@
         android:layout_gravity="center_vertical|center_horizontal"/>
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/namesListView"
         android:layout_width="234dp"
         android:layout_height="0dp"
         android:drawSelectorOnTop="false"
