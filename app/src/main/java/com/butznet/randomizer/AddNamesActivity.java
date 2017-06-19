@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 public class AddNamesActivity extends AppCompatActivity {
     private EditText inputTextField;
-    private Button newNameButton;
-    private ListView nameList;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> arrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +25,11 @@ public class AddNamesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        Button newNameButton = (Button) findViewById(R.id.addNewNameButton);
         inputTextField = (EditText) findViewById(R.id.addNameInputText);
-        newNameButton = (Button) findViewById(R.id.addNewNameButton);
-        nameList = (ListView) findViewById(R.id.namesListView);
+        ListView nameList = (ListView) findViewById(R.id.namesListView);
         arrayList = new ArrayList<>();
+
 
         newNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +41,6 @@ public class AddNamesActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
         nameList.setAdapter(adapter);
-
         configureBackButton();
     }
 
