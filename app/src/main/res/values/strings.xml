@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Randomizer</string>
+    <string name="action_settings">Settings</string>
+    <string name="text_view_screen">Push The Button</string>
+    <string name="answer_yes">Yes!</string>
+    <string name="answer_no">No!</string>
+    <string name="title_activity_add_names">AddNamesActivity</string>
+</resources>
