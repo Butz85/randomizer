@@ -49,6 +49,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void removeAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // db.delete(String tableName, String whereClause, String[] whereArgs);
+        // If whereClause is null, it will delete all rows.
+        db.delete(DatabaseHelper.TABLE_NAME, null, null);
+    }
+
     public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;

@@ -43,11 +43,18 @@
         android:layout_gravity="center_vertical|center_horizontal"/>
 
     <Button
+        android:id="@+id/clearListButton"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:text="Clear" />
+
+    <Button
         android:id="@+id/backButton"
-        android:layout_width="60dp"
+        android:layout_width="79dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:text="Back"
-        app:layout_anchor="@+id/include2"/>
+        app:layout_anchor="@+id/include2" />
 
 </LinearLayout>

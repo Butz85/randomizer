@@ -1,7 +1,8 @@
 package com.butznet.randomizer;
 
-import android.content.Intent;
+import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +22,7 @@ public class AddNamesActivity extends AppCompatActivity {
 
     DatabaseHelper mDatabaseHelper;
     private EditText inputTextField;
-    private Button newNameButton, backButton;
+    private Button newNameButton, backButton, clearButton;
     private ListView nameList;
 
 
@@ -37,6 +38,7 @@ public class AddNamesActivity extends AppCompatActivity {
         inputTextField = (EditText) findViewById(R.id.addNameInputText);
         nameList = (ListView) findViewById(R.id.namesListView);
         mDatabaseHelper = new DatabaseHelper(this);
+        populateListView();
 
         newNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +54,18 @@ public class AddNamesActivity extends AppCompatActivity {
         });
 
         configureBackButton();
-        populateListView();
+        configureClearButton();
+
+    }
+
+    private void configureClearButton() {
+        clearButton = (Button) findViewById(R.id.clearListButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatabaseHelper.removeAll();
+            }
+        });
     }
 
     private void populateListView() {

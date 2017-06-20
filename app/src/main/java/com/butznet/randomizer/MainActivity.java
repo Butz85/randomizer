@@ -1,6 +1,7 @@
 package com.butznet.randomizer;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,20 +9,24 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public TextView tvScreen;
-    public TextView tvButton;
+    DatabaseHelper mDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mDatabaseHelper = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -31,10 +36,17 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final Cursor data = mDatabaseHelper.getData();
+                ArrayList<String> listData = new ArrayList<>();
                 Random random = new Random();
                 int n = 10 + random.nextInt(20);
                 tvScreen = (TextView)findViewById(R.id.onScreenView);
                 final Handler handler = new Handler();
+
+                while(data.moveToNext()) {
+                    listData.add(data.getString(1));
+                }
+                toastMessage("Number of entries: " + data.getCount());
 
                 for (int i = 0; i < n; i++ ) {
                     final int finalI = i;
@@ -42,13 +54,18 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            tvScreen.setText(R.string.answer_yes);
-                            tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorTextFieldBlack));
-                            getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-                            if ((finalI % 2) == 0) {
-                                getWindow().getDecorView().setBackgroundColor(Color.RED);
-                                tvScreen.setText(R.string.answer_no);
-                                tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorTextFieldWhite));
+                            if (data.getCount() == 0 ) {
+                                tvScreen.setText(R.string.answer_yes);
+                                tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorTextFieldBlack));
+                                getWindow().getDecorView().setBackgroundColor(Color.GREEN);
+
+                                if ((finalI % 2) == 0) {
+                                    getWindow().getDecorView().setBackgroundColor(Color.RED);
+                                    tvScreen.setText(R.string.answer_no);
+                                    tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorTextFieldWhite));
+                                }
+                            } else {
+                                toastMessage("Hello");
                             }
                         }
                     }, (100 * i + i * i ));
@@ -90,5 +107,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
