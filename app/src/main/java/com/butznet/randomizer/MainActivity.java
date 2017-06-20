@@ -9,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        mSQLiteAdapter = new SQLiteAdapter();
         mDatabaseHelper = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Cursor data = mDatabaseHelper.getData();
-                ArrayList<String> listData = new ArrayList<>();
+                final ArrayList<String> listData = new ArrayList<>();
                 Random random = new Random();
                 int n = 10 + random.nextInt(20);
                 tvScreen = (TextView)findViewById(R.id.onScreenView);
@@ -64,8 +64,12 @@ public class MainActivity extends AppCompatActivity {
                                     tvScreen.setText(R.string.answer_no);
                                     tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorTextFieldWhite));
                                 }
+                            } else if (data.getCount() % 2 == 0) {
+                                getWindow().getDecorView().setBackgroundColor(Color.GREEN);
+
                             } else {
-                                toastMessage("Hello");
+                                getWindow().getDecorView().setBackgroundColor(Color.RED);
+
                             }
                         }
                     }, (100 * i + i * i ));
