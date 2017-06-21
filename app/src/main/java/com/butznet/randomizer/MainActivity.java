@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,16 +38,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Cursor data = mDatabaseHelper.getData();
-                final ArrayList<String> listData = new ArrayList<>();
                 Random random = new Random();
-                int n = 10 + random.nextInt(20);
+                int n = 10 + random.nextInt(20) + data.getCount();
                 tvScreen = (TextView)findViewById(R.id.onScreenView);
                 final Handler handler = new Handler();
-
-                while(data.moveToNext()) {
-                    listData.add(data.getString(1));
-                }
-                toastMessage("Number of entries: " + data.getCount());
 
                 for (int i = 0; i < n; i++ ) {
                     final int finalI = i;
@@ -64,12 +59,14 @@ public class MainActivity extends AppCompatActivity {
                                     tvScreen.setText(R.string.answer_no);
                                     tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorTextFieldWhite));
                                 }
-                            } else if (data.getCount() % 2 == 0) {
-                                getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-
                             } else {
-                                getWindow().getDecorView().setBackgroundColor(Color.RED);
-
+                                tvScreen.setText(mDatabaseHelper.getRandomData().getString(1));
+                                getWindow().getDecorView().setBackgroundColor(Color.GREEN);
+                                tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorTextFieldBlack));
+                                if ((finalI % 2) == 0) {
+                                    getWindow().getDecorView().setBackgroundColor(Color.RED);
+                                    tvScreen.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorTextFieldWhite));
+                                }
                             }
                         }
                     }, (100 * i + i * i ));
@@ -111,9 +108,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void toastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

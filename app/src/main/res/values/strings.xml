@@ -5,4 +5,5 @@
     <string name="answer_yes">Yes!</string>
     <string name="answer_no">No!</string>
     <string name="title_activity_add_names">AddNamesActivity</string>
+    <string name="add_new_names_button">Add Names</string>
 </resources>

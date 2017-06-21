@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 + " TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -59,7 +59,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
-        Cursor data = db.rawQuery(query, null);
-        return data;
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor getRandomData () {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY RANDOM() LIMIT 1";
+        Cursor c = db.rawQuery(query, null);
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
     }
 }

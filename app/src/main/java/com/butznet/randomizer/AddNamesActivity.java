@@ -2,6 +2,7 @@ package com.butznet.randomizer;
 
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -35,10 +36,8 @@ public class AddNamesActivity extends AppCompatActivity {
 
         inputTextField = (EditText) findViewById(R.id.addNameInputText);
         newNameButton  = (Button) findViewById(R.id.addNewNameButton);
-        inputTextField = (EditText) findViewById(R.id.addNameInputText);
         nameList = (ListView) findViewById(R.id.namesListView);
         mDatabaseHelper = new DatabaseHelper(this);
-        populateListView();
 
         newNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,14 +46,15 @@ public class AddNamesActivity extends AppCompatActivity {
                 if (inputTextField.length() != 0) {
                     addData(newEntry);
                     inputTextField.setText("");
+                    populateListView();
                 } else {
                     toastMessage("You must put something in the text field");
                 }
             }
         });
-
         configureBackButton();
         configureClearButton();
+        populateListView();
 
     }
 
@@ -64,6 +64,7 @@ public class AddNamesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mDatabaseHelper.removeAll();
+                populateListView();
             }
         });
     }
@@ -71,13 +72,14 @@ public class AddNamesActivity extends AppCompatActivity {
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in the ListView.");
 
-        Cursor data = mDatabaseHelper.getData();
+        Cursor cursor = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(1));
-        }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         nameList.setAdapter(adapter);
+
+        while(cursor.moveToNext()) {
+            listData.add(cursor.getString(1));
+        }
     }
 
     public void addData(String newEntry) {
