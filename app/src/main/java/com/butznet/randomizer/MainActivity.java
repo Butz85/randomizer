@@ -9,15 +9,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.cuboid.cuboidcirclebutton.CuboidButton;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        mSQLiteAdapter = new SQLiteAdapter();
         mDatabaseHelper = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -78,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void configureAddNamesButton() {
-        Button addNamesButton = (Button) findViewById(R.id.addNamesButton);
+        CuboidButton addNamesButton = (CuboidButton) findViewById(R.id.addNamesButton);
         addNamesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

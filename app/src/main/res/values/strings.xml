@@ -6,4 +6,8 @@
     <string name="answer_no">No!</string>
     <string name="title_activity_add_names">AddNamesActivity</string>
     <string name="add_new_names_button">Add Names</string>
+    <string name="back_to_main_button">Back</string>
+    <string name="clear_name_list_button">Clear</string>
+    <string name="add_name_hint">Enter name</string>
+    <string name="add_name_textview_button">+</string>
 </resources>

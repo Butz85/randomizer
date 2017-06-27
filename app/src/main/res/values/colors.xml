@@ -5,4 +5,8 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorTextFieldWhite">#FFFFFF</color>
     <color name="colorTextFieldBlack">#000000</color>
+    <color name="defaultBackgroundColor">#C1C1C1</color>
+    <color name="inputTextFieldBackground">#E9E9E9</color>
+    <color name="backgroundRed">#FF0000</color>
+    <color name="backgroundGreen">#00FF00</color>
 </resources>

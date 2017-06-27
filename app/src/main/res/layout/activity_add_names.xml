@@ -2,59 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.butznet.randomizer.AddNamesActivity"
+    android:layout_gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     android:weightSum="1"
-    android:layout_gravity="center_vertical|center_horizontal">
+    tools:context="com.butznet.randomizer.AddNamesActivity"
+    android:background="@color/defaultBackgroundColor">
 
-    <EditText
-        android:id="@+id/addNameInputText"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="45dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Enter name"/>
 
-    <Button
-        android:id="@+id/addNewNameButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="+"
-        android:layout_gravity="center_vertical|center_horizontal"/>
+    <LinearLayout
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:padding="6dp"
+            android:layout_gravity="start"
+            android:id="@+id/addNameInputText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.11"
+            android:ems="10"
+            android:hint="@string/add_name_hint"
+            android:inputType="textPersonName"
+            android:background="@drawable/roundedcorners"/>
+
+        <com.cuboid.cuboidcirclebutton.CuboidButton
+            android:id="@+id/addNewNameButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.53"
+            app:cub_color="#404040"
+            app:cub_hover_color="#00BFFF"
+            app:cub_icon="@drawable/ic_add_item" />
+
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/namesListView"
         android:layout_width="234dp"
         android:layout_height="0dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_weight="0.74"
         android:drawSelectorOnTop="false"
         tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:layout_weight="0.74"
-        android:layout_gravity="center_vertical|center_horizontal"/>
+        tools:layout_editor_absoluteY="16dp" />
 
-    <Button
+    <com.cuboid.cuboidcirclebutton.CuboidButton
         android:id="@+id/clearListButton"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:text="Clear" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.00"
+        app:cub_color="#404040"
+        app:cub_hover_color="#00BFFF"
+        app:cub_icon="@drawable/ic_clear_list" />
 
-    <Button
+    <com.cuboid.cuboidcirclebutton.CuboidButton
         android:id="@+id/backButton"
-        android:layout_width="79dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:text="Back"
-        app:layout_anchor="@+id/include2" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        app:cub_color="#404040"
+        app:cub_hover_color="#00BFFF"
+        app:cub_icon="@drawable/ic_back_button" />
 
 </LinearLayout>

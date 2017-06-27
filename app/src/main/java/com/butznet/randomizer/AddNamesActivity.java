@@ -2,19 +2,19 @@ package com.butznet.randomizer;
 
 import android.database.Cursor;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.cuboid.cuboidcirclebutton.CuboidButton;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class AddNamesActivity extends AppCompatActivity {
 
     DatabaseHelper mDatabaseHelper;
     private EditText inputTextField;
-    private Button newNameButton, backButton, clearButton;
+    private CuboidButton newNameButton, backButton, clearButton;
     private ListView nameList;
 
 
@@ -35,9 +35,11 @@ public class AddNamesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         inputTextField = (EditText) findViewById(R.id.addNameInputText);
-        newNameButton  = (Button) findViewById(R.id.addNewNameButton);
+        newNameButton  = (CuboidButton) findViewById(R.id.addNewNameButton);
         nameList = (ListView) findViewById(R.id.namesListView);
         mDatabaseHelper = new DatabaseHelper(this);
+
+        inputTextField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         newNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +61,7 @@ public class AddNamesActivity extends AppCompatActivity {
     }
 
     private void configureClearButton() {
-        clearButton = (Button) findViewById(R.id.clearListButton);
+        clearButton = (CuboidButton) findViewById(R.id.clearListButton);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +99,7 @@ public class AddNamesActivity extends AppCompatActivity {
     }
 
     private void configureBackButton() {
-        backButton = (Button) findViewById(R.id.backButton);
+        backButton = (CuboidButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

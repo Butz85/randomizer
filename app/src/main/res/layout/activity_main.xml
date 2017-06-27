@@ -14,10 +14,10 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.Toolbar
+        android:background="@color/defaultBackgroundColor"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="81dp"
-        android:background="@android:color/white"
         app:titleTextColor="@color/colorPrimaryDark"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -34,12 +34,15 @@
         android:id="@+id/include"
         layout="@layout/content_main" />
 
-    <Button
+    <com.cuboid.cuboidcirclebutton.CuboidButton
         android:id="@+id/addNamesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:text="@string/add_new_names_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="40dp"
+        app:cub_color="#404040"
+        app:cub_hover_color="#00BFFF"
+        app:cub_icon="@drawable/ic_add_names_activity"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|center_horizontal" />
 
