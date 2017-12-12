@@ -1,8 +1,11 @@
 package com.butznet.randomizer;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -54,6 +57,7 @@ public class AddNamesActivity extends AppCompatActivity {
                 }
             }
         });
+
         configureBackButton();
         configureClearButton();
         populateListView();
@@ -61,15 +65,37 @@ public class AddNamesActivity extends AppCompatActivity {
     }
 
     private void configureClearButton() {
+        final AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+
         clearButton = (CuboidButton) findViewById(R.id.clearListButton);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabaseHelper.removeAll();
-                populateListView();
+                builder.setTitle("Delete entry")
+                .setMessage("Are you sure you want to delete this entry?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDatabaseHelper.removeAll();
+                        populateListView();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_notification_clear_all)
+                .show();
             }
         });
     }
+
+
 
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in the ListView.");

@@ -20,16 +20,17 @@
         android:orientation="horizontal">
 
         <EditText
-            android:padding="6dp"
-            android:layout_gravity="start"
             android:id="@+id/addNameInputText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="start"
             android:layout_weight="2.11"
+            android:background="@drawable/roundedcorners"
             android:ems="10"
             android:hint="@string/add_name_hint"
             android:inputType="textPersonName"
-            android:background="@drawable/roundedcorners"/>
+            android:padding="15dp"
+            android:textAlignment="viewStart" />
 
         <com.cuboid.cuboidcirclebutton.CuboidButton
             android:id="@+id/addNewNameButton"
@@ -53,23 +54,33 @@
         tools:layout_editor_absoluteX="83dp"
         tools:layout_editor_absoluteY="16dp" />
 
-    <com.cuboid.cuboidcirclebutton.CuboidButton
-        android:id="@+id/clearListButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.00"
-        app:cub_color="#404040"
-        app:cub_hover_color="#00BFFF"
-        app:cub_icon="@drawable/ic_clear_list" />
+        android:elevation="24dp">
 
-    <com.cuboid.cuboidcirclebutton.CuboidButton
-        android:id="@+id/backButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        app:cub_color="#404040"
-        app:cub_hover_color="#00BFFF"
-        app:cub_icon="@drawable/ic_back_button" />
+        <com.cuboid.cuboidcirclebutton.CuboidButton
+            android:id="@+id/clearListButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.00"
+            app:cub_color="#404040"
+            app:cub_hover_color="#00BFFF"
+            app:cub_icon="@drawable/ic_clear_list" />
+
+        <com.cuboid.cuboidcirclebutton.CuboidButton
+            android:id="@+id/backButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            app:cub_color="#404040"
+            app:cub_hover_color="#00BFFF"
+            app:cub_icon="@drawable/ic_back_button" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
