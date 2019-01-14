@@ -29,7 +29,6 @@ public class AddNamesActivity extends AppCompatActivity {
     private CuboidButton newNameButton, backButton, clearButton;
     private ListView nameList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,6 @@ public class AddNamesActivity extends AppCompatActivity {
         configureBackButton();
         configureClearButton();
         populateListView();
-
     }
 
     private void configureClearButton() {
@@ -94,8 +92,6 @@ public class AddNamesActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in the ListView.");
@@ -135,5 +131,4 @@ public class AddNamesActivity extends AppCompatActivity {
             }
         });
     }
-
 }
