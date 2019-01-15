@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -100,6 +101,31 @@ public class AddNamesActivity extends AppCompatActivity {
         ArrayList<String> listData = new ArrayList<>();
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         nameList.setAdapter(adapter);
+
+        nameList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String name = adapterView.getItemAtPosition(position).toString();
+                Log.d(TAG, "onItemLongClick: You clicked on " + name);
+                Cursor data = mDatabaseHelper.getItemID(name);
+                int itemID = -1;
+
+                while(data.moveToNext()) {
+                    itemID = data.getInt(0);
+                }
+                if(itemID > -1) {
+                    Log.d(TAG, "onItemLongClick: The ID is: " + itemID);
+                    mDatabaseHelper.deleteName(itemID, name);
+                    populateListView();
+                    toastMessage(name + " Successfully Deleted");
+                }
+                else {
+                    toastMessage("No ID associated with that name");
+                }
+                return true;
+            }
+        });
 
         while(cursor.moveToNext()) {
             listData.add(cursor.getString(1));
